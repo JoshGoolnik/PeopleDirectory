@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "people-directory-client-side-solution",
+    "id": "6ebb9a0c-2cd9-4d3f-af72-6b40f066e52f",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "webApiPermissionRequests": [
+      { "resource": "Microsoft Graph", "scope": "User.Read.All" },
+      { "resource": "Microsoft Graph", "scope": "Calendars.Read" },
+      { "resource": "Microsoft Graph", "scope": "Tasks.Read" },
+      { "resource": "Microsoft Graph", "scope": "Presence.Read.All" }
+    ],
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.19.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "PeopleDirectory description"
+      },
+      "longDescription": {
+        "default": "PeopleDirectory description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "people-directory Feature",
+        "description": "The feature that activates elements of the people-directory solution.",
+        "id": "b7168c5d-bab3-4235-a608-20dc32fc0b3a",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/people-directory.sppkg"
+  }
+}

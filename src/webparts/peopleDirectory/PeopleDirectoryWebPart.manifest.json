@@ -1,0 +1,22 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "724a2e9c-87d0-4ddf-ad86-79cf99004542",
+  "alias": "PeopleDirectoryWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab", "SharePointFullPage"],
+  "supportsThemeVariants": true,
+
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+    "group": { "default": "Advanced" },
+    "title": { "default": "PeopleDirectory" },
+    "description": { "default": "PeopleDirectory description" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "PeopleDirectory"
+    }
+  }]
+}
