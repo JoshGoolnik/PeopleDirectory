@@ -51,7 +51,6 @@ export class GraphService {
             activity = "Out of Office";
             statusMessage = presenceResponse.outOfOfficeSettings?.message || "";
           }
-
           if (presenceResponse.availability != "PrescenceUnknown")
           {
             users.push({

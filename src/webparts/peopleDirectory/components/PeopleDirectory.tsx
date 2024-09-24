@@ -5,6 +5,17 @@ import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import { IPeopleDirectoryProps } from './IPeopleDirectoryProps';
 import { IUser } from '../models/IUser';
 
+// Define SVGs for status
+const statusIcons = {
+  available: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 10 10" fill="#92c353"><circle cx="5" cy="5" r="5"/></svg>',
+  away: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 10 10" fill="#fcd116"><circle cx="5" cy="5" r="5"/></svg>',
+  busy: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 10 10" fill="#c4314b"><circle cx="5" cy="5" r="5"/></svg>',
+  dnd: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 10 10" fill="#c4314b"><circle cx="5" cy="5" r="5"/></svg>',
+  ooo: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 10 10" fill="#b4009e"><circle cx="5" cy="5" r="5"/></svg>',
+  offline: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 10 10" fill="#959595"><circle cx="5" cy="5" r="5"/></svg>'
+};
+
+
 const PeopleDirectory: React.FC<IPeopleDirectoryProps> = ({ graphService }) => {
   const [people, setPeople] = useState<IUser[]>([]);
   const [filteredPeople, setFilteredPeople] = useState<IUser[]>([]);
@@ -47,14 +58,40 @@ const PeopleDirectory: React.FC<IPeopleDirectoryProps> = ({ graphService }) => {
     setFilteredPeople(filtered);
   };
 
+ // Function to render the custom SVG status icon
+ const renderStatusIcon = (availability: string) => {
+  switch (availability.toLowerCase()) {
+    case 'available':
+      return <span dangerouslySetInnerHTML={{ __html: statusIcons.available }} />;
+    case 'away':
+      return <span dangerouslySetInnerHTML={{ __html: statusIcons.away }} />;
+    case 'busy':
+      return <span dangerouslySetInnerHTML={{ __html: statusIcons.busy }} />;
+    case 'do not disturb':
+      return <span dangerouslySetInnerHTML={{ __html: statusIcons.dnd }} />;
+    case 'out of office':
+      return <span dangerouslySetInnerHTML={{ __html: statusIcons.ooo }} />;
+    case 'offline':
+        return <span dangerouslySetInnerHTML={{ __html: statusIcons.offline }} />;
+    default:
+      return availability;
+  }
+};
   const columns: IColumn[] = [
-    { key: 'displayName', name: 'Name', fieldName: 'displayName', minWidth: 100 },
-    { key: 'jobTitle', name: 'Job Title', fieldName: 'jobTitle', minWidth: 100 },
-    { key: 'department', name: 'Department', fieldName: 'department', minWidth: 100 },
-    { key: 'availability', name: 'Availability', fieldName: 'availability', minWidth: 100 },
-    { key: 'activity', name: 'Activity', fieldName: 'activity', minWidth: 100 },
-    { key: 'statusMessage', name: 'Status Message', fieldName: 'statusMessage', minWidth: 200 },
-    { key: 'workLocation', name: 'Work Location', fieldName: 'workLocation', minWidth: 100 }
+    { key: 'displayName', name: 'Name', fieldName: 'displayName', minWidth: 100, flexGrow: 2 },
+    { key: 'jobTitle', name: 'Job Title', fieldName: 'jobTitle', minWidth: 100, flexGrow: 3 },
+    { key: 'department', name: 'Department', fieldName: 'department', minWidth: 100, flexGrow: 2 },
+    {
+      key: 'availability',
+      name: '?',
+      fieldName: 'availability',
+      minWidth: 20,
+      flexGrow: 1,
+      onRender: (item: IUser) => renderStatusIcon(item.availability)
+    },
+    { key: 'activity', name: 'Activity', fieldName: 'activity', minWidth: 100, flexGrow: 2 },
+    { key: 'statusMessage', name: 'Status Message', fieldName: 'statusMessage', minWidth: 200, flexGrow: 4 },
+    { key: 'workLocation', name: 'Work Location', fieldName: 'workLocation', minWidth: 100, flexGrow: 2 }
   ];
 
   return (
