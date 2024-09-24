@@ -6,7 +6,6 @@ import * as ReactDom from 'react-dom';
 import PeopleDirectory from './components/PeopleDirectory';
 import { IPeopleDirectoryProps } from './components/IPeopleDirectoryProps';
 import { GraphService } from './services/GraphService';
-import { Log } from '@microsoft/sp-core-library'
 
 export interface IPeopleDirectoryWebPartProps {}
 
@@ -15,9 +14,11 @@ export default class PeopleDirectoryWebPart extends BaseClientSideWebPart<IPeopl
     const element: React.ReactElement<IPeopleDirectoryProps> = React.createElement(PeopleDirectory, {
       graphService: new GraphService(this.context)
     });
-    Log.info('PeopleDirectoryWebPart','Rendering GraphService...',this.context.serviceScope);
-    ReactDom.render(element, this.domElement);
-    Log.info('PeopleDirectoryWebPart','GraphService rendering complete.',this.context.serviceScope);
+    this.context.statusRenderer.displayLoadingIndicator(this.domElement, "People Directory.");
+    setTimeout(() => {
+      this.context.statusRenderer.clearLoadingIndicator(this.domElement);
+      ReactDom.render(element, this.domElement);
+    },5000);
   }
 
   protected onDispose(): void {
