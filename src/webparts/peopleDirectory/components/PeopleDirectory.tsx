@@ -34,6 +34,7 @@ const PeopleDirectory: React.FC<IPeopleDirectoryProps> = ({ graphService }) => {
   const columns: IColumn[] = [
     { key: 'displayName', name: 'Name', fieldName: 'displayName', minWidth: 100 },
     { key: 'jobTitle', name: 'Job Title', fieldName: 'jobTitle', minWidth: 100 },
+    { key: 'department', name: 'Department', fieldName: 'department', minWidth:100},
     { key: 'availability', name: 'Availability', fieldName: 'availability', minWidth: 100 },
     { key: 'activity', name: 'Activity', fieldName: 'activity', minWidth: 100 },
     { key: 'statusMessage', name: 'Status Message', fieldName: 'statusMessage', minWidth: 200 },

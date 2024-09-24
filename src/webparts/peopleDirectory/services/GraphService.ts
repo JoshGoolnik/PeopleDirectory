@@ -21,9 +21,14 @@ export class GraphService {
       const usersResponse = await client
         .api('/users')
         .version('v1.0')
-        .select('id,displayName,jobTitle,officeLocation')
+        .header('ConsistencyLevel','eventual')
+        .filter('officeLocation ne null AND Department ne null AND surname ne null')
+        .select('id,displayName,jobTitle,department')
+        .orderby('displayName')
+        .top(50)
+        .count(true)
         .get();
-
+        
       Log.info("GraphService", `Fetched ${usersResponse.value.length} users`);
 
       // Fetch presence for each user
@@ -39,6 +44,7 @@ export class GraphService {
             users.push({
               displayName: user.displayName,
               jobTitle: user.jobTitle,
+              department: user.department,
               availability: presenceResponse.availability,
               activity: presenceResponse.activity,
               statusMessage: presenceResponse.statusMessage?.message?.content || "",
