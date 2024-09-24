@@ -4,7 +4,6 @@ import { TextField, DetailsList, IColumn } from 'office-ui-fabric-react';
 import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import { IPeopleDirectoryProps } from './IPeopleDirectoryProps';
 import { IUser } from '../models/IUser';
-import { Log } from '@microsoft/sp-core-library';
 
 const PeopleDirectory: React.FC<IPeopleDirectoryProps> = ({ graphService }) => {
   const [people, setPeople] = useState<IUser[]>([]);
@@ -15,9 +14,7 @@ const PeopleDirectory: React.FC<IPeopleDirectoryProps> = ({ graphService }) => {
 
   useEffect(() => {
     async function fetchPeopleData() {
-      Log.info('PeopleDirectory TSX', 'Fetching people data');
       const users = await graphService.getUsersWithPresence();
-      Log.info('PeopleDirectory TSX', 'Fetch completed!');
 
       // Extract unique departments
       const uniqueDepartments = Array.from(new Set(users.map(user => user.department)))

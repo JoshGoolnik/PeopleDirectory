@@ -39,15 +39,28 @@ export class GraphService {
             .version('beta')
             .get();
 
+          // Check if the user is out of office and overwrite availability and activity
+          let availability = presenceResponse.availability;
+          let activity = presenceResponse.activity;
+          let statusMessage = presenceResponse.statusMessage?.message?.content || ""
+          let outOfOffice = presenceResponse.outOfOfficeSettings?.isOutOfOffice
+
+          Log.info("GraphService", `Fetched ${user.displayName}, out of office status ${outOfOffice}`)
+          if (outOfOffice) {
+            availability = "Out of Office";
+            activity = "Out of Office";
+            statusMessage = presenceResponse.outOfOfficeSettings?.message || "";
+          }
+
           if (presenceResponse.availability != "PrescenceUnknown")
           {
             users.push({
               displayName: user.displayName,
               jobTitle: user.jobTitle,
               department: user.department,
-              availability: presenceResponse.availability,
-              activity: presenceResponse.activity,
-              statusMessage: presenceResponse.statusMessage?.message?.content || "",
+              availability: availability,
+              activity: activity,
+              statusMessage:statusMessage,
               workLocation: user.officeLocation
             });
           }
