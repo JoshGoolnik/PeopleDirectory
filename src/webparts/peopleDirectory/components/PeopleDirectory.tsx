@@ -106,9 +106,8 @@ const PeopleDirectory: React.FC<IPeopleDirectoryProps> = ({ graphService }) => {
       flexGrow: 1,
       onRender: (item: IUser) => renderStatusIcon(item.availability)
     },
-    { key: 'activity', name: 'Activity', fieldName: 'activity', minWidth: 100, flexGrow: 2 },
+    { key: 'activity', name: 'Activity', fieldName: 'activity', minWidth: 50, flexGrow: 2 },
     { key: 'statusMessage', name: 'Status Message', fieldName: 'statusMessage', minWidth: 200, flexGrow: 4 },
-    { key: 'workLocation', name: 'Work Location', fieldName: 'workLocation', minWidth: 100, flexGrow: 2 }
   ];
 
   return (

@@ -1,4 +1,5 @@
 export interface IUser {
+    id: string;
     displayName: string;
     jobTitle: string;
     department: string;
