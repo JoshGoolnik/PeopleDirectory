@@ -84,9 +84,9 @@ const PeopleDirectory: React.FC<IPeopleDirectoryProps> = ({ graphService }) => {
       return <span dangerouslySetInnerHTML={{ __html: statusIcons.away }} />;
     case 'busy':
       return <span dangerouslySetInnerHTML={{ __html: statusIcons.busy }} />;
-    case 'do not disturb':
+    case 'donotdisturb':
       return <span dangerouslySetInnerHTML={{ __html: statusIcons.dnd }} />;
-    case 'out of office':
+    case 'outofoffice':
       return <span dangerouslySetInnerHTML={{ __html: statusIcons.ooo }} />;
     case 'offline':
         return <span dangerouslySetInnerHTML={{ __html: statusIcons.offline }} />;
@@ -94,20 +94,26 @@ const PeopleDirectory: React.FC<IPeopleDirectoryProps> = ({ graphService }) => {
       return availability;
   }
 };
+
+// Function to remove HTML tags, classes and css properties.
+const regex = /(<([^>]+)>)/gi;
+const formatStatusMessage = (statusMessage: string) => {
+  return statusMessage.replace(regex,'');
+}
   const columns: IColumn[] = [
-    { key: 'displayName', name: 'Name', fieldName: 'displayName', minWidth: 100, flexGrow: 2 },
-    { key: 'jobTitle', name: 'Job Title', fieldName: 'jobTitle', minWidth: 100, flexGrow: 3 },
-    { key: 'department', name: 'Department', fieldName: 'department', minWidth: 100, flexGrow: 2 },
+    { key: 'displayName', name: 'Name', fieldName: 'displayName', minWidth: 120, maxWidth: 200, isResizable: true},
+    { key: 'jobTitle', name: 'Job Title', fieldName: 'jobTitle', minWidth: 75, maxWidth: 220, isResizable: true},
+    { key: 'department', name: 'Department', fieldName: 'department', minWidth: 75, maxWidth: 220, isResizable: true},
     {
       key: 'availability',
       name: '?',
       fieldName: 'availability',
-      minWidth: 20,
-      flexGrow: 1,
+      minWidth:30, 
+      maxWidth:30,
       onRender: (item: IUser) => renderStatusIcon(item.availability)
     },
-    { key: 'activity', name: 'Activity', fieldName: 'activity', minWidth: 50, flexGrow: 2 },
-    { key: 'statusMessage', name: 'Status Message', fieldName: 'statusMessage', minWidth: 200, flexGrow: 4 },
+    { key: 'activity', name: 'Activity', fieldName: 'activity', minWidth: 60, maxWidth: 160, isResizable: true},
+    { key: 'statusMessage', name: 'Status Message', fieldName: 'statusMessage', minWidth: 220, maxWidth: 500, isResizable: true, onRender: (item:IUser) => formatStatusMessage(item.statusMessage || '')}
   ];
 
   return (
