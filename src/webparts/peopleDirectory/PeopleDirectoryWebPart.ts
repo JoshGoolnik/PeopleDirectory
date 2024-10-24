@@ -7,7 +7,9 @@ import PeopleDirectory from './components/PeopleDirectory';
 import { IPeopleDirectoryProps } from './components/IPeopleDirectoryProps';
 import { GraphService } from './services/GraphService';
 
-export interface IPeopleDirectoryWebPartProps {}
+export interface IPeopleDirectoryWebPartProps {
+  
+}
 
 export default class PeopleDirectoryWebPart extends BaseClientSideWebPart<IPeopleDirectoryWebPartProps> {
   public render(): void {

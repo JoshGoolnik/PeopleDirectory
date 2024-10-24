@@ -2,9 +2,7 @@
 
 ## Summary
 
-Short summary on functionality and used technologies.
-
-[picture of the solution in action, if possible]
+A SPFx web part to list people, locations and statuses from the Microsoft Graph API 
 
 ## Used SharePoint Framework Version
 
@@ -19,20 +17,36 @@ Short summary on functionality and used technologies.
 
 ## Prerequisites
 
-> Any special pre-requisites?
-
-## Solution
-
-| Solution    | Author(s)                                               |
-| ----------- | ------------------------------------------------------- |
-| folder name | Author details (name, company, twitter alias with link) |
-
-## Version history
-
-| Version | Date             | Comments        |
-| ------- | ---------------- | --------------- |
-| 1.1     | March 10, 2021   | Update comment  |
-| 1.0     | January 29, 2021 | Initial release |
+  "dependencies": {
+    "@fluentui/react": "^8.106.4",
+    "@microsoft/sp-component-base": "1.19.0",
+    "@microsoft/sp-core-library": "1.19.0",
+    "@microsoft/sp-http": "latest",
+    "@microsoft/sp-lodash-subset": "1.19.0",
+    "@microsoft/sp-office-ui-fabric-core": "1.19.0",
+    "@microsoft/sp-property-pane": "1.19.0",
+    "@microsoft/sp-webpart-base": "1.19.0",
+    "office-ui-fabric-react": "latest",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "tslib": "2.3.1"
+  },
+  "devDependencies": {
+    "@microsoft/eslint-config-spfx": "1.20.1",
+    "@microsoft/eslint-plugin-spfx": "1.20.1",
+    "@microsoft/microsoft-graph-types": "2.40.0",
+    "@microsoft/rush-stack-compiler-4.7": "0.1.0",
+    "@microsoft/sp-build-web": "1.20.1",
+    "@microsoft/sp-module-interfaces": "1.20.1",
+    "@rushstack/eslint-config": "2.5.1",
+    "@types/react": "17.0.45",
+    "@types/react-dom": "17.0.17",
+    "@types/webpack-env": "~1.15.2",
+    "ajv": "^6.12.5",
+    "eslint": "8.7.0",
+    "eslint-plugin-react-hooks": "4.3.0",
+    "gulp": "4.0.2",
+    "typescript": 
 
 ## Disclaimer
 
@@ -52,17 +66,11 @@ Short summary on functionality and used technologies.
 
 ## Features
 
-Description of the extension that expands upon high-level summary above.
+The People Directory web part can be placed on any Sharepoint page and will list all the individuals in an organisation, along with their job title, department and their prescence. It will also list their current status message OR their current "Out of Office" message.
 
-This extension illustrates the following concepts:
+You can filter by name or department.
 
-- topic 1
-- topic 2
-- topic 3
-
-> Notice that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions advance.
-
-> Share your web part with others through Microsoft 365 Patterns and Practices program to get visibility and exposure. More details on the community, open-source projects and other activities from http://aka.ms/m365pnp.
+All details are taken from their Microsoft 365 profile and obtained via the Graph API.
 
 ## References
 

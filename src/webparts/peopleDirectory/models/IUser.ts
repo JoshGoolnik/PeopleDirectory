@@ -6,6 +6,5 @@ export interface IUser {
     availability: string;
     activity: string;
     statusMessage?: string;
-    workLocation: string;
   }
   
