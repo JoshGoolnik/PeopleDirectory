@@ -6,5 +6,6 @@ export interface IUser {
     availability: string;
     activity: string;
     statusMessage?: string;
+    photo?: string;
   }
   

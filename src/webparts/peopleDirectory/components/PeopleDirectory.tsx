@@ -79,6 +79,16 @@ const formatStatusMessage = (statusMessage: string) => {
   return statusMessage.replace(regex,'');
 }
   const columns: IColumn[] = [
+    {
+      key: 'photo',
+      name: '',
+      fieldName: 'photo',
+      minWidth: 50,
+      maxWidth: 50,
+      onRender: (item: IUser) => (
+          <img src={item.photo} alt={item.displayName} width="40" height="40" style={{ borderRadius: '50%' }} />
+      )
+    },
     { key: 'displayName', name: 'Name', fieldName: 'displayName', minWidth: 120, maxWidth: 140, isResizable: true, isMultiline:true},
     { key: 'jobTitle', name: 'Job Title', fieldName: 'jobTitle', minWidth: 75, maxWidth: 200, isResizable: true, isMultiline:true},
     { key: 'department', name: 'Department', fieldName: 'department', minWidth: 75, maxWidth: 160, isResizable: true, isMultiline:true},
